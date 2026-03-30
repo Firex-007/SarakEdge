@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --font-space: 'Space Grotesk', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #07090e;
+  color: #e2eaf4;
+  font-family: var(--font-space);
+  /* Subtle grid texture across entire app */
+  background-image:
+    linear-gradient(rgba(26, 255, 212, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 255, 212, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(26, 255, 212, 0.25); }
+
+/* ─── Selection ──────────────────────────────────────────────────────────────── */
+::selection { background: rgba(26, 255, 212, 0.2); }
+
+/* ─── Keyframes ─────────────────────────────────────────────────────────────── */
+@keyframes pulse-live {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 255, 212, 0.5); }
+  50%       { box-shadow: 0 0 0 7px rgba(26, 255, 212, 0); }
+}
+
+@keyframes pulse-buf {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 171, 64, 0.5); }
+  50%       { box-shadow: 0 0 0 7px rgba(255, 171, 64, 0); }
+}
+
+.animate-pulse-live { animation: pulse-live 2s ease-in-out infinite; }
+.animate-pulse-buf  { animation: pulse-buf  2s ease-in-out infinite; }
+
+/* ─── Recharts overrides ─────────────────────────────────────────────────────── */
+.recharts-default-legend { display: none !important; }
+.recharts-cartesian-axis-tick-value { font-family: var(--font-mono) !important; }
